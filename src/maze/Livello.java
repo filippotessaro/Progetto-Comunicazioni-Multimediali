@@ -29,6 +29,7 @@ public class Livello {
     		this.username = user;
     		this.token = tk;
     		this.btn = new Button("Gioca");
+    		btn.getStyleClass().add("tableButton");
     		this.userId = ud;
     }
   
@@ -68,6 +69,7 @@ public class Livello {
 				out = loader.getController();
 				out.initialize(numeroLivello, username, userId, idLivello, token);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
 				stage.setScene(new Scene(parent));
 				stage.show();
 			} catch (Exception e) {

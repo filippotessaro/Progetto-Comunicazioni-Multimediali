@@ -104,6 +104,7 @@ public class LevelController{
         		colTempo.setCellValueFactory(new PropertyValueFactory<Livello,String>("tempo"));
         		colGioca.setCellValueFactory(new PropertyValueFactory<>("btn"));
         		
+        		
         		//Setto il contenuto della tabella con il contenuto dell'ObservableList livelli
         		tableUser.setItems(livelli);
     		}else {

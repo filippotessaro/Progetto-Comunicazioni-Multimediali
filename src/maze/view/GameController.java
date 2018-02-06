@@ -29,6 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import maze.Board;
+import maze.Login;
 
 
 public class GameController{
@@ -174,6 +175,7 @@ public class GameController{
 		out.setTable();
 
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
 		stage.setScene(new Scene(parent));
 		stage.show();
 	}
@@ -207,6 +209,7 @@ public class GameController{
 				out.SetVariables(token,userId,username);
 				out.setTable();
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
 				stage.setScene(new Scene(parent));
 				stage.show();
 		    }

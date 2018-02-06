@@ -25,11 +25,12 @@ import javafx.event.ActionEvent;
 
 
 public class LevelController{
-	
+	//variabili Globali 
 	private String token;
 	private String userId;
 	ObservableList<Livello> livelli = FXCollections.observableArrayList();
 	
+	//Variabili per la gestione della view
 	@FXML
 	private TableView<Livello> tableUser;
 	@FXML
@@ -71,20 +72,30 @@ public class LevelController{
     		//Vari log per accedere ai campi del JsonArray
     		System.out.println(myResponse);		//visualizza tutto l'array
     		System.out.println(myResponse.length());		//visualizza la lunghezza dell'array
-    		System.out.println(myResponse.get(0));		//visualizza l'oggetto in posizione 0 dell'array
     		
-    		setLivelliList(myResponse);
     		
-    		colLivello.setCellValueFactory(new PropertyValueFactory<Livello,String>("idLivello"));
-    		colTocchi.setCellValueFactory(new PropertyValueFactory<Livello,String>("numeroTocchi"));
-    		colNliv.setCellValueFactory(new PropertyValueFactory<Livello,Integer>("numeroLivello"));
-    		colSvolto.setCellValueFactory(new PropertyValueFactory<Livello,String>("svolto"));
-    		colTempo.setCellValueFactory(new PropertyValueFactory<Livello,String>("tempo"));
-    		colGioca.setCellValueFactory(new PropertyValueFactory<>("btn"));
+    		//Controllo per verificare se il JSONArray contiene elementi
+    		//se questo non contiene nulla, visualizzo a console che non ci sono livelli assegnati
+    		if(myResponse.length()!= 0) {
+    			setLivelliList(myResponse);
+    			colLivello.setCellValueFactory(new PropertyValueFactory<Livello,String>("idLivello"));
+        		colTocchi.setCellValueFactory(new PropertyValueFactory<Livello,String>("numeroTocchi"));
+        		colNliv.setCellValueFactory(new PropertyValueFactory<Livello,Integer>("numeroLivello"));
+        		colSvolto.setCellValueFactory(new PropertyValueFactory<Livello,String>("svolto"));
+        		colTempo.setCellValueFactory(new PropertyValueFactory<Livello,String>("tempo"));
+        		colGioca.setCellValueFactory(new PropertyValueFactory<>("btn"));
+        		
+        		//Setto il contenuto della tabella con il contenuto dell'ObservableList livelli
+        		tableUser.setItems(livelli);
+    		}else {
+        		System.out.println("No livelli assegnati a: " + lbUsername.getText());		//visualizza l'oggetto in posizione 0 dell'array
+    		}
     		
-    		tableUser.setItems(livelli);
     }
     
+    //Funzione che accetta un JSON Aray in IN
+    //crea un oggetto livello con i campi contenuti nel JSON e poi lo
+    //aggiunge alla ObservableList livelli
     private void setLivelliList(JSONArray jsonArray) throws JSONException{
 	    	int i;
 	    	for(i=0;i<jsonArray.length();i++) {  		
@@ -140,7 +151,8 @@ public class LevelController{
 		
 		return response;
 	}
-
+    
+    //Premuto il pulsante LOGOUT si viene indirizzati alla pagina di LOGIN
 	public void Esci(ActionEvent event) throws Exception {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		FXMLLoader loader = new FXMLLoader();	

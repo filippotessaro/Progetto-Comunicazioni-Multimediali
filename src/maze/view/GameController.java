@@ -72,9 +72,10 @@ public class GameController{
     @FXML 
     private Pane pane2;
     
-    
+    //Inizializza le variabili della game-view
+    //questa funzione viene chiamata dalla level-view
     public void initialize(int livello, String user, String usId, String levId, String tk) {
-    		System.out.println("Stampa prima");
+    		System.out.println("initialize");
     		username = user;
     		token = tk;
     		userId = usId;
@@ -85,6 +86,7 @@ public class GameController{
     		createAndSetSwingContent(nodeGame, pane, livello);
     }
     
+    //Funzione che ferma il gioco
     public void stopGame(ActionEvent e) {
     		timeline.pause();
     		if(board.getMessage() != "Winner") {
@@ -95,6 +97,8 @@ public class GameController{
     			stopGame.setVisible(false);
     		}
     }
+    
+    //Funzione che fa ripartire il gioco
     public void startGame(ActionEvent e) {
     		if (timeline != null)
 			timeline.play();
@@ -123,7 +127,8 @@ public class GameController{
     		lbTime.textProperty().bind(timeSeconds.asString());
     }
     
-    
+    //Funzione che aggiorna la label che mostra il numero di volte che l'utente 
+    //tocca il muro
     public void updateLabelTocchi(MouseEvent e) {
     		System.out.println("Premuto");
     		idTocchi.setText(String.valueOf(board.getCounter()));
@@ -134,7 +139,9 @@ public class GameController{
     			btnSave.setVisible(true);
     		}
     }
-
+    
+    //Inizializza la board interna alla view
+    //la variabile board è un contenuto Java Swing, e per questo deve essere inizializzato in questo modo
 	public void createAndSetSwingContent(SwingNode swingNode, Pane panel,int levelNumber) {
 		Platform.runLater(new Runnable() {
 	        @Override
@@ -154,6 +161,8 @@ public class GameController{
 		
 	}
 	
+	//Funzione che mi rimanda alla level-view settandola con i campi:
+	// token,userId,username
 	public void EsciGioco(ActionEvent event) throws Exception {
 		((Node) (event.getSource())).getScene().getWindow().hide();
 		FXMLLoader loader = new FXMLLoader();
@@ -169,6 +178,8 @@ public class GameController{
 		stage.show();
 	}
 	
+	
+	//Funzione che effettua il salvataggio della partita mandanto una PUT Request al server
 	public void SalvaPartita(ActionEvent event) throws Exception {
 					
 		JSONObject json = new JSONObject();

@@ -6,7 +6,14 @@ L'app viene sviluppata al fine medicale.
 ## Come Installarla
 
 La repo su github è un progetto Eclipse.
+Inoltre bisogna aggiungere le librerie situate nella Folder library.
+Per aggiungere le librerie basta andare su Configure Build Path>Libraries>Add Jar
+
+
+## Interfacciamento con Web
+
+L'applicazione comunicherà con un server Heroku proprietario.
 
 ## Team
 
-Fabio Carollo e Tessaro Filippo
+Tessaro Filippo e Fabio Carollo

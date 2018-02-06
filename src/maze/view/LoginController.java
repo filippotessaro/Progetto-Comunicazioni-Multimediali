@@ -36,11 +36,13 @@ public class LoginController {
 	@FXML
 	private AnchorPane apLogin;
 	
+	//Azione di login 
+	//se i campi username e password contengono testo viene chiamata la funzione call_me per la richiesta al server
 	public void Login(ActionEvent event) throws Exception {
 		System.out.println("password: " + lb_pass.getText());
 		if(lb_user.getText() != null && lb_pass.getText() != null) {
-		//	lb_status.setText("Login Success");
-		//	lb_status.setTextFill(Paint.valueOf("green"));
+			lb_status.setText("Login Success");
+			lb_status.setTextFill(Paint.valueOf("green"));
 			call_me(event);
 		}
 		else {
@@ -49,6 +51,9 @@ public class LoginController {
 		}
 	}
 	
+	//Funzione che riceve in ingresso l'evento generato dal click dell bottone di Login
+	//Essa manda una POST request al server, il quale a sua volta 
+	//controlla lo username e la password e ritorna un Json contenente il Token
 	public void call_me(ActionEvent event) throws Exception {
 		
 		URL url = new URL("http://localhost:8080/api/authenticate");

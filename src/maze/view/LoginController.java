@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import maze.Login;
 
 
 public class LoginController {
@@ -56,7 +57,7 @@ public class LoginController {
 	//controlla lo username e la password e ritorna un Json contenente il Token
 	public void call_me(ActionEvent event) throws Exception {
 		
-		URL url = new URL("http://localhost:8080/api/authenticate");
+		URL url = new URL("https://servermaze.herokuapp.com/api/authenticate");
 		Map<String,Object> params = new LinkedHashMap<>();
 		
 		//Inserisco parametri
@@ -112,6 +113,7 @@ public class LoginController {
 		
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(new Scene(parent));
+		stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
 		stage.show();
 		
 	}

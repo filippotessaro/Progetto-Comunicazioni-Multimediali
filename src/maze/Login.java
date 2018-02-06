@@ -25,6 +25,7 @@ public class Login extends Application {
 		loader.setLocation(Login.class.getResource("view/Login.fxml"));
 		root = loader.load();
 		Scene scene = new Scene(root);
+		scene.getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

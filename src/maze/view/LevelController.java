@@ -15,11 +15,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import maze.Livello;
+import maze.Login;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
@@ -82,6 +85,22 @@ public class LevelController{
         		colTocchi.setCellValueFactory(new PropertyValueFactory<Livello,String>("numeroTocchi"));
         		colNliv.setCellValueFactory(new PropertyValueFactory<Livello,Integer>("numeroLivello"));
         		colSvolto.setCellValueFactory(new PropertyValueFactory<Livello,String>("svolto"));
+        		
+        		//Cambio il colore del testo se il livello è svolto o meno
+        		colSvolto.setCellFactory(column ->  {
+                    return new TableCell<Livello, String>() {
+                        @Override
+                        protected void updateItem(String item, boolean empty) {
+                            if (item == "false") {
+                            		this.setTextFill(Color.RED);
+                            		setText(item);
+                            }else {
+                            		this.setTextFill(Color.GREEN); 
+                            		setText(item);
+                            }
+                        }            
+                    };
+             });
         		colTempo.setCellValueFactory(new PropertyValueFactory<Livello,String>("tempo"));
         		colGioca.setCellValueFactory(new PropertyValueFactory<>("btn"));
         		
@@ -118,7 +137,7 @@ public class LevelController{
 		StringBuffer response = null;
 		
 		try {
-			String url = "http://localhost:8080/api/users/level/" + user_id;
+			String url = "https://servermaze.herokuapp.com/api/users/level/" + user_id;
 			URL obj = new URL(url);
 			
 			// Connetto tramite GET
@@ -159,6 +178,7 @@ public class LevelController{
 		Parent  parent = loader.load(getClass().getResource("Login.fxml").openStream());
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(new Scene(parent));
+		stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
 		stage.show();
 	}
 }

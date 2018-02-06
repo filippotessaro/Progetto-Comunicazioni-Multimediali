@@ -152,7 +152,7 @@ public class GameController{
 	        		}else {
 	        			board = new Board(levelNumber);
 	        		}
-	        		System.out.println("Stampa funzione");
+	        		System.out.println("Caricamento Gioco");
 	        		board.setPreferredSize(new Dimension(448,448));
 	        		board.setstopGameTrue();
 	            	swingNode.setContent(board); 
@@ -189,7 +189,7 @@ public class GameController{
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 
 		try {
-		    HttpPut request = new HttpPut("http://localhost:8080/api/levels/?levelId=" + levelId +"&userId=" + userId);
+		    HttpPut request = new HttpPut("https://servermaze.herokuapp.com/api/levels/?levelId=" + levelId +"&userId=" + userId);
 		    StringEntity params = new StringEntity(json.toString());
 		    request.addHeader("content-type", "application/json");
 		    request.addHeader("x-access-token", token);

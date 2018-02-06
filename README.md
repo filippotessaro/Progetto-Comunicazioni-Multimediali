@@ -12,7 +12,13 @@ Per aggiungere le librerie basta andare su Configure Build Path>Libraries>Add Ja
 
 ## Interfacciamento con Web
 
-L'applicazione comunicherà con un server Heroku proprietario.
+L'applicazione comunicherà con un server Heroku proprietario:  `https://servermaze.herokuapp.com/`.
+La Repo del server si trova al seguente URL: `https://github.com/filippotessaro/servermaze`.
+Per visualizzare la pagina web di gestione degli utenti basta scaricare la cartella Github e poi aprire la sottocartella client dove vi sarà il file: 
+
+```
+client.html
+```
 
 ## Team
 

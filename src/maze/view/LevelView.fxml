@@ -12,7 +12,7 @@
       <TableView fx:id="tableUser" layoutX="30.0" layoutY="182.0" prefHeight="370.0" prefWidth="833.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
         <columns>
           <TableColumn fx:id="colLivello" editable="false" minWidth="40.0" prefWidth="135.76972770690918" sortable="false" text="ID Livello" />
-          <TableColumn fx:id="colNliv" editable="false" prefWidth="98.07450866699219" sortable="false" text="N°. Livello" />
+          <TableColumn fx:id="colNliv" editable="false" prefWidth="98.07450866699219" text="N°. Livello" />
             <TableColumn fx:id="colTocchi" editable="false" prefWidth="81.29379272460938" sortable="false" text="N°. Tocchi" />
             <TableColumn fx:id="colTempo" editable="false" prefWidth="114.0262451171875" sortable="false" text="Tempo" />
             <TableColumn fx:id="colSvolto" editable="false" prefWidth="88.9737548828125" sortable="false" text="Svolto" />

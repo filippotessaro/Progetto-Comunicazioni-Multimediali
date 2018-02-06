@@ -1,1 +1,4 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+ .loginPanel {
+ 	-fx-effect: dropshadow( gaussian ,  rgba(66, 66, 66,0.5) , 0,0,0,2 );
+ }

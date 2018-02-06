@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Downloads/Jar vari/bcprov-jdk15on-1.52.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Downloads/Jar vari/boon-0.33.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Downloads/Jar vari/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Downloads/Jar vari/java-json.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Downloads/Jar vari/java-jwt-3.0.0.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/fluent-hc-4.5.5.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/httpclient-4.5.5.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/httpclient-cache-4.5.5.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/httpclient-win-4.5.5.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/httpcore-4.4.9.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/httpmime-4.5.5.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/jna-4.4.0.jar"/>
+	<classpathentry kind="lib" path="/Users/filippotessaro/Desktop/httpcomponents-client-4.5.5/lib/jna-platform-4.4.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

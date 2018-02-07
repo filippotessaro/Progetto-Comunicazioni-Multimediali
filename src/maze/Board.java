@@ -102,8 +102,8 @@ public class Board extends JPanel implements ActionListener {
 				}
 			}
 		}
-		g.drawString(Message, 50, 50);
-		g.drawString(String.valueOf(counter),300,300);
+//		g.drawString(Message, 50, 50);
+//		g.drawString(String.valueOf(counter),300,300);
 		g.drawImage(p.getPlayer(), (int)p.getTileX(), (int)p.getTileY(), null);
 
 	}

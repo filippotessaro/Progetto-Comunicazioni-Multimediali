@@ -53,11 +53,11 @@ public class LevelController{
 	
     
     //Costruttore che mi setta lo userId e il token da un'altra view
-	public void SetVariables(String tk, String user, String usename) {
+	public void SetVariables(String tk, String user, String username) {
 		System.out.println("user: " + tk + " token: " + user);
 		token = tk;
 		userId = user;
-		lbUsername.setText(usename);
+		lbUsername.setText(username);
 	}
 	
 

@@ -23,7 +23,7 @@
             <SwingNode fx:id="nodeGame" onMouseClicked="#updateLabelTocchi" />
             <Pane fx:id="pane2" layoutX="-9.0" layoutY="-5.0" prefHeight="513.0" prefWidth="515.0" style="-fx-background-color: rgba(66, 66, 66,0.6);" visible="false">
                <children>
-                  <Button fx:id="btnSave" layoutX="191.0" layoutY="385.0" mnemonicParsing="false" onAction="#SalvaPartita" prefHeight="69.0" prefWidth="222.0" style="-fx-background-color: #f48f42;" text="Salva la partita" visible="false" />
+                  <Button id="saveButton" fx:id="btnSave" layoutX="191.0" layoutY="385.0" mnemonicParsing="false" onAction="#SalvaPartita" prefHeight="69.0" prefWidth="222.0" style="-fx-background-color: #f48f42;" text="Salva la partita" visible="false" />
                   <Label fx:id="labelWinner" alignment="CENTER" layoutX="123.0" layoutY="119.0" prefHeight="213.0" prefWidth="341.0" style="-fx-background-radius: 3 3 3 3; -fx-background-color: #87c45a;" text="Winner!" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="27.0" />

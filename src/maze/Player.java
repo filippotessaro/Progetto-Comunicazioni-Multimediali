@@ -14,8 +14,8 @@ public class Player {
 		ImageIcon img= new ImageIcon("risorse/images/player.png");
 		player = img.getImage();
 		
-		tileX = 32;
-		tileY = 32;		
+		tileX = 64;
+		tileY = 64;		
 		
 	}
 	

@@ -39,6 +39,8 @@ public class LoginController {
 	private Button btn_Login;
 	@FXML
 	private AnchorPane apLogin;
+	@FXML
+	private Label lbWrongPass;
 	
 	//Azione di login 
 	//se i campi username e password contengono testo viene chiamata la funzione call_me per la richiesta al server
@@ -46,7 +48,7 @@ public class LoginController {
 		System.out.println("password: " + lb_pass.getText());
 		if(checkConnection()==true) {
 			if(lb_user.getText() != null && lb_pass.getText() != null) {
-				lb_status.setText("Connesso!");
+				lb_status.setText("Connesso al Server");
 				lb_status.setTextFill(Paint.valueOf("green"));
 				call_me(event);
 			}
@@ -102,24 +104,27 @@ public class LoginController {
 		//Salvo le risposte in una variabile JSON
 		JSONObject myResponse = new JSONObject(response.toString());
 		System.out.println(myResponse);
-		String token = (String) myResponse.get("token");
-		System.out.println("Token: " + token);
-		String user = (String) myResponse.get("user");
+		if((boolean) myResponse.get("success") == true) {
+			String token = (String) myResponse.get("token");
+			System.out.println("Token: " + token);
+			String user = (String) myResponse.get("user");
 
-		//Cambio di view: da Login => a LevelController
-		((Node) (event.getSource())).getScene().getWindow().hide();
-		FXMLLoader loader = new FXMLLoader();
-		
-		Parent  parent = loader.load(getClass().getResource("LevelView.fxml").openStream());
-		LevelController out = new LevelController();
-		out = loader.getController();
-		out.SetVariables(token,user,lb_user.getText());
-		out.setTable();
-		
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(new Scene(parent));
-		stage.getScene().getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
-		stage.show();
+			//Cambio di view: da Login => a LevelController
+			((Node) (event.getSource())).getScene().getWindow().hide();
+			FXMLLoader loader = new FXMLLoader();
+			
+			Parent  parent = loader.load(getClass().getResource("LevelView.fxml").openStream());
+			LevelController out = new LevelController();
+			out = loader.getController();
+			out.SetVariables(token,user,lb_user.getText());
+			out.setTable();
+			
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(new Scene(parent));
+			stage.getScene().getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
+			stage.show();
+		} else 
+			lbWrongPass.setText("Password o Username errati");
 		
 	}
 	

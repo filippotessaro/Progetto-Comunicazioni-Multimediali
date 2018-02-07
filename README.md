@@ -23,4 +23,4 @@ client.html
 
 ## Team
 
-Tessaro Filippo e Fabio Carollo
+Tessaro Filippo e Carollo Fabio

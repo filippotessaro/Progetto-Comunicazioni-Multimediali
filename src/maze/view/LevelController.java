@@ -22,7 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import maze.Livello;
-import maze.Login;
+import maze.Main;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
@@ -179,7 +179,7 @@ public class LevelController{
 		Parent  parent = loader.load(getClass().getResource("Login.fxml").openStream());
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(new Scene(parent));
-		stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
+		stage.getScene().getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
 		stage.show();
 	}
 }

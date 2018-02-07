@@ -5,20 +5,21 @@ L'app viene sviluppata al fine medicale.
 
 ## Come Installarla
 
-La repo su github è un progetto Eclipse.
-Inoltre bisogna aggiungere le librerie situate nella Folder library.
-Per aggiungere le librerie basta andare su Configure Build Path>Libraries>Add Jar
+La repo su github è un progetto Eclipse, basta importarlo con il comando "File > Import > General > Projects from Folder or Archive".
+Bisogna aggiungere le librerie situate nella Folder "library".
+Per aggiungere le librerie basta andare su Configure "Build Path > Libraries > Add Jar" e aggiungere le librerie presenti nella cartella nominata sopra.
 
 
 ## Interfacciamento con Web
 
-L'applicazione comunicherà con un server Heroku proprietario:  `https://servermaze.herokuapp.com/`.
+L'applicazione comunica con un server Heroku proprietario:  `https://servermaze.herokuapp.com/`.
 La Repo del server si trova al seguente URL: `https://github.com/filippotessaro/servermaze`.
 Per visualizzare la pagina web di gestione degli utenti basta scaricare la cartella Github e poi aprire la sottocartella client dove vi sarà il file: 
 
 ```
 client.html
 ```
+
 
 ## Team
 

@@ -8,7 +8,7 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 
-public class Login extends Application {
+public class Main extends Application {
 	
 	private AnchorPane root;
 	private Stage primaryStage;
@@ -22,10 +22,10 @@ public class Login extends Application {
 	
 	private void showMainView() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Login.class.getResource("view/Login.fxml"));
+		loader.setLocation(Main.class.getResource("view/Login.fxml"));
 		root = loader.load();
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
+		scene.getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

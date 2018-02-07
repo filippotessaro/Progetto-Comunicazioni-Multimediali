@@ -9,16 +9,10 @@ import java.io.*;
 import java.util.*;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author filippotessaro
- */
+
 public class Map {
-    
     private Scanner m;
-    
     private String Map[] = new String[14];
-    
     private Image grass,wall, finish;
     
     public Map(){
@@ -34,15 +28,15 @@ public class Map {
         closeFile();
     }
     
+    //Costruttore che carica le varie icone di gioco (wall,grass,player)
+    //e le mette in una matrice/MAP
     public Map(int livello){
         ImageIcon img = new ImageIcon("risorse/images/grass.png");
         grass = img.getImage();
-        
         img = new ImageIcon("risorse/images/wall.png");
         wall = img.getImage();
         img = new ImageIcon("risorse/images/finish.png");
         finish = img.getImage();
-//        openFile();
         openFileTxt(livello);
         readFile();
         closeFile();
@@ -77,7 +71,6 @@ public class Map {
         try{
         	String name = "risorse/levels/";
         	String txt = ".txt";
-//        	String nameFile = name + String.valueOf(livello) + txt ;
         	String nameFile = name + String.valueOf(livello) + txt ;
         m = new Scanner(new File(nameFile));}
         catch(Exception e){

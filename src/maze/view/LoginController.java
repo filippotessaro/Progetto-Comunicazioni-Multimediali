@@ -1,9 +1,12 @@
 package maze.view;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
@@ -21,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import maze.Login;
+import maze.Main;
 
 
 public class LoginController {
@@ -41,15 +44,17 @@ public class LoginController {
 	//se i campi username e password contengono testo viene chiamata la funzione call_me per la richiesta al server
 	public void Login(ActionEvent event) throws Exception {
 		System.out.println("password: " + lb_pass.getText());
-		if(lb_user.getText() != null && lb_pass.getText() != null) {
-			lb_status.setText("Login Success");
-			lb_status.setTextFill(Paint.valueOf("green"));
-			call_me(event);
-		}
-		else {
-			lb_status.setText("Login Failed");
+		if(checkConnection()==true) {
+			if(lb_user.getText() != null && lb_pass.getText() != null) {
+				lb_status.setText("Connesso!");
+				lb_status.setTextFill(Paint.valueOf("green"));
+				call_me(event);
+			}
+		}else {
+			lb_status.setText("No Connection");
 			lb_status.setTextFill(Paint.valueOf("red"));
 		}
+		
 	}
 	
 	//Funzione che riceve in ingresso l'evento generato dal click dell bottone di Login
@@ -94,7 +99,7 @@ public class LoginController {
 			sb.append((char)c);
 		String response = sb.toString();
 		
-		//Stampo le risposte
+		//Salvo le risposte in una variabile JSON
 		JSONObject myResponse = new JSONObject(response.toString());
 		System.out.println(myResponse);
 		String token = (String) myResponse.get("token");
@@ -113,8 +118,21 @@ public class LoginController {
 		
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(new Scene(parent));
-		stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
+		stage.getScene().getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
 		stage.show();
 		
 	}
+	
+	//Verifico lo stato della connessione creando una socket al server Heroku(come stest)
+    public static boolean checkConnection() throws IOException {
+        String site = "servermaze.herokuapp.com";
+        try (Socket socket = new Socket()) {
+            InetSocketAddress addr = new InetSocketAddress(site, 80);
+            socket.connect(addr, 3000);
+            return socket.isConnected();
+        }catch(Exception e){
+        		return false;
+        }
+    }
+	
 }

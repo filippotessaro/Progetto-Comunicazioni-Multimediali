@@ -11,22 +11,15 @@ import java.awt.event.MouseListener;
 
 import java.awt.event.MouseMotionListener;
 
-/** 
- *
- * @author filippotessaro
- */
-
-
-
 public class Board extends JPanel implements ActionListener {
 	
 	private Timer timer;
-	private Map m;
-	private Player p;
-	private String Message = "";
-	private int counter;
-	private boolean drag = false;
-	private boolean stopGame = false;
+	private Map m;							//Mappa gioco
+	private Player p;						//Player che si muove all'interno della board
+	private String Message = "";				//Messaggio settato al momento della vincita
+	private int counter;						//contatore del numero di tocchi sopra il muro
+	private boolean drag = false;			//vero se sto muovendo il personaggio
+	private boolean stopGame = false;		//variabile che mi indica se posso o meno muovere il personaggio
 
 
 	public int getCounter() {
@@ -37,11 +30,9 @@ public class Board extends JPanel implements ActionListener {
 	}
 	public void setstopGameTrue() {
 		stopGame = true;
-		timer.stop();
 	}
 	public void setstopGameFalse() {
 		stopGame = false;
-		timer.start();
 	}
 
 	public boolean getstopGame() {
@@ -77,12 +68,11 @@ public class Board extends JPanel implements ActionListener {
 		setFocusable(true);
 
 		timer = new Timer(25,this);
-//		timer.start();
+		timer.start();
 	}
 	
-
+	//Controllo se sono in prossimità del punto di arrivo
 	public void actionPerformed(ActionEvent e){
-
 		int x=(int)(p.getTileX()/32);
 		int y=(int)(p.getTileY()/32);
 		//        if(m.getMap(x,y).equals("f")) {
@@ -92,11 +82,11 @@ public class Board extends JPanel implements ActionListener {
 				m.getMap(x, y+1).equals("f")) {
 			Message = "Winner";
 			stopGame = true;
-//			timer.stop();
+			timer.stop();
 		}
 		repaint();
 	}
-
+	//Mi aggiorna la grafica della board aggiornando anche la posizione del player
 	public void paint(Graphics g){
 		super.paint(g);
 		for(int y=0; y<14;y++){
@@ -117,9 +107,12 @@ public class Board extends JPanel implements ActionListener {
 		g.drawImage(p.getPlayer(), (int)p.getTileX(), (int)p.getTileY(), null);
 
 	}
-
+	
+	//Classe per la gestione degli eventi del MOUSE
 	public class Ml implements MouseListener,MouseMotionListener{
-
+		
+		//Mouse Premuto
+		//prende la posizione del personaggio e verifica se premo fuori oppure dentro l'immagine del player
 		public void mousePressed(MouseEvent e) {
 			double x=p.getTileX();
 			double y=p.getTileY();
@@ -133,16 +126,20 @@ public class Board extends JPanel implements ActionListener {
 
 
 		}
-
+		
+		//Trascinamento del Mouse
 		public void mouseDragged(MouseEvent e) {
+			//Verifico che il gioco non sia finito
 			if(!stopGame) {
+				//Verifico che drag sia vero
 				if(drag) {
 					if(!p.pressOut) {
 						System.out.println("getX:"+e.getX()+"getY:"+e.getY());
 						p.move(e.getX()-p.getTileX()-16,e.getY()-p.getTileY()-16);
 						int x=(int)(p.getTileX()/32);
 						int y=(int)(p.getTileY()/32);
-
+						
+						//Controllo della vicinanza del muro
 						if((m.getMap(x+1, y+1).equals("w") || 
 								m.getMap(x, y).equals("w") || 
 								m.getMap(x+1, y).equals("w") || 
@@ -152,15 +149,14 @@ public class Board extends JPanel implements ActionListener {
 							return;
 						}
 
-					}else {
+					} else {
 						System.out.println("Fuori posizione");
-
 					}
 				}
 			}
 
 		}
-
+		//Rilascio del mouse
 		public void mouseReleased(MouseEvent e) {
 			double x=p.getTileX();
 			double y=p.getTileY();

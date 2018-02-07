@@ -63,13 +63,12 @@ public class Livello {
 			System.out.println(userId);
 			try {
 				FXMLLoader loader = new FXMLLoader();
-				
 				Parent  parent = loader.load(getClass().getResource("view/Game.fxml").openStream());
 				GameController out = new GameController();
 				out = loader.getController();
 				out.initialize(numeroLivello, username, userId, idLivello, token);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
+				stage.getScene().getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
 				stage.setScene(new Scene(parent));
 				stage.show();
 			} catch (Exception e) {
@@ -79,6 +78,5 @@ public class Livello {
 		});
 		return btn;
 	}
-	
 	
 }

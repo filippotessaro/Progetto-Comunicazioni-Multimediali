@@ -29,7 +29,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import maze.Board;
-import maze.Login;
+import maze.Main;
 
 
 public class GameController{
@@ -41,7 +41,6 @@ public class GameController{
 	private Timeline timeline;
 	private DoubleProperty timeSeconds = new SimpleDoubleProperty();
     private Duration time = Duration.ZERO;
-	
 	
     @FXML
     private Button startButton;
@@ -175,7 +174,7 @@ public class GameController{
 		out.setTable();
 
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
+		stage.getScene().getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
 		stage.setScene(new Scene(parent));
 		stage.show();
 	}
@@ -189,16 +188,17 @@ public class GameController{
 		json.put("tempo", timeSeconds.doubleValue());
 		json.put("svolto", true); 
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-
+		System.out.println("Level ID: " + this.levelId);
 		try {
-		    HttpPut request = new HttpPut("https://servermaze.herokuapp.com/api/levels/?levelId=" + levelId +"&userId=" + userId);
+		    HttpPut request = new HttpPut("https://servermaze.herokuapp.com/api/levels/?levelId=" + this.levelId +"&userId=" + this.userId);
 		    StringEntity params = new StringEntity(json.toString());
 		    request.addHeader("content-type", "application/json");
 		    request.addHeader("x-access-token", token);
 		    request.setEntity(params);
 		    HttpResponse response = httpClient.execute(request);
 		    System.out.println(response.getStatusLine().getStatusCode());
-		    if(response.getStatusLine().getStatusCode()==200) {
+		    
+		    if(response.getStatusLine().getStatusCode() == 200) {
 		    	//Cambio view dopo la risposta
 			    ((Node) (event.getSource())).getScene().getWindow().hide();
 				FXMLLoader loader = new FXMLLoader();
@@ -209,19 +209,16 @@ public class GameController{
 				out.SetVariables(token,userId,username);
 				out.setTable();
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-				stage.getScene().getStylesheets().add(Login.class.getResource("view/application.css").toExternalForm());
+				stage.getScene().getStylesheets().add(Main.class.getResource("view/application.css").toExternalForm());
 				stage.setScene(new Scene(parent));
 				stage.show();
-		    }
-		    
+		    } 
 		} catch (Exception ex) {
 		    // handle exception here
+			System.out.println(ex);
 		} finally {
 		    httpClient.close();
-		}
-			
-
-			
+		}	
 	}	
 			
 }
